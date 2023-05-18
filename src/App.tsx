@@ -1,7 +1,7 @@
 
 import Homepage from './pages/Homepage'
 
-import Login from './components/Login'
+import Login from './pages/Login'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
@@ -11,7 +11,7 @@ function App() {
 
 
   return (
-    <>
+    <div className=''>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Homepage />}  />
@@ -20,7 +20,7 @@ function App() {
       </BrowserRouter>
  
 
-    </>
+    </div>
   )
 }
 

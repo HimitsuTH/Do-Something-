@@ -39,8 +39,6 @@ const Login = () => {
             setLoading(false)
 
 
-
-
         } catch (err) {
             setLoading(false)
         }
@@ -52,24 +50,26 @@ const Login = () => {
 
 
     return (
-        <Formik
-            initialValues={initialValues}
-            onSubmit={(values) => {
-                handleOnSubmit(values)
-                // resetForm({values: {
-                //     email: "",
-                //     password:""
-                // }})
-                // navigate("/")
-            }}
-        >
-            <Form className=' flex flex-col gap-2'>
-                <Field name="email" id="email" placeholder="Email" className=" input outline-none" />
-                <Field name="password" id="password" placeholder="password" type="password" className=" input outline-none" />
-                <p className=' text-red-500 my-4'>{data.error && data.error.message}</p>
-                <button type="submit" className={`${loading && "loading"} bg-slate-200`} disabled={loading}>{loading ? "loading..." : "sign up"}</button>
-            </Form>
-        </Formik>
+        <div className='grid h-screen place-items-center'>
+            <Formik
+                initialValues={initialValues}
+                onSubmit={(values) => {
+                    handleOnSubmit(values)
+                    // resetForm({values: {
+                    //     email: "",
+                    //     password:""
+                    // }})
+                    // navigate("/")
+                }}
+            >
+                <Form className=' flex flex-col gap-2'>
+                    <Field name="email" id="email" placeholder="Email" className=" input outline-none" />
+                    <Field name="password" id="password" placeholder="password" type="password" className=" input outline-none" />
+                    <p className=' text-red-500 my-4'>{data.error && data.error.message}</p>
+                    <button type="submit" className={`${loading && "loading"} bg-slate-200`} disabled={loading}>{loading ? "loading..." : "sign up"}</button>
+                </Form>
+            </Formik>
+        </div>
     )
 }
 
