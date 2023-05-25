@@ -50,25 +50,43 @@ const Login = () => {
 
 
     return (
-        <div className='grid h-screen place-items-center'>
-            <Formik
-                initialValues={initialValues}
-                onSubmit={(values) => {
-                    handleOnSubmit(values)
-                    // resetForm({values: {
-                    //     email: "",
-                    //     password:""
-                    // }})
-                    // navigate("/")
-                }}
-            >
-                <Form className=' flex flex-col gap-2'>
-                    <Field name="email" id="email" placeholder="Email" className=" input outline-none" />
-                    <Field name="password" id="password" placeholder="password" type="password" className=" input outline-none" />
-                    <p className=' text-red-500 my-4'>{data.error && data.error.message}</p>
-                    <button type="submit" className={`${loading && "loading"} bg-slate-200`} disabled={loading}>{loading ? "loading..." : "sign up"}</button>
-                </Form>
-            </Formik>
+        <div>
+            <nav  className='p-3 absolute top-0 w-full'>
+                <ul className=' flex justify-end items-center'>
+                    <li>
+                        <button onClick={()=> navigate(-1)}>
+                            Back
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            <div className=' grid h-screen place-items-center '>
+                <div >
+                    <Formik
+                        initialValues={initialValues}
+                        onSubmit={(values) => {
+                            handleOnSubmit(values)
+                            // resetForm({values: {
+                            //     email: "",
+                            //     password:""
+                            // }})
+                            // navigate("/")
+
+                        }}
+                    >
+                        <Form className=' flex flex-col gap-2'>
+                            <Field name="email" id="email" placeholder="Email" className=" input outline-none" />
+                            <Field name="password" id="password" placeholder="password" type="password" className=" input outline-none" />
+                            <p className=' text-red-500 my-2 text-center'>{data.error && data.error.message}</p>
+                            <button type="submit" className={`${loading && "loading"}`} disabled={loading}>{loading ? "loading..." : "sign up"}</button>
+                        </Form>
+                    </Formik>
+                    <div className=' flex gap-x-2 mt-4'>
+                        <p>Don't have an account?</p>
+                        <a href='/register'>Signup now</a>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

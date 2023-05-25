@@ -6,6 +6,7 @@ interface User {
   id: string;
   name: string;
   email: string;
+  role: string;
 }
 
 interface InitialState {
@@ -32,7 +33,7 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchUser.pending, (state) => {
-      localStorage.removeItem("userData")
+      localStorage.removeItem("userData");
       state.loading = true;
     });
     builder.addCase(fetchUser.fulfilled, (state, action) => {

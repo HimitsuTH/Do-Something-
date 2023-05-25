@@ -4,21 +4,29 @@ import { useAppSeletor, useAppDispatch } from '../redux/app/hook'
 
 
 import { fetchUser } from "../redux/features/user/userSlice"
-import Navbar from '../components/navbar';
+import Navbar from '../components/Navbar';
 
 
 const Homepage = () => {
     let data = useAppSeletor(state => state.user);
-    const token = localStorage.getItem("token")
+    let token: any = localStorage.getItem("token")
     const user = data.userData
+
+
+    // console.log(user.role)
     // const navigate = useNavigate();
-
-
     const dispatch = useAppDispatch();
+
+    const getUser = () => {
+        if (token) {
+            return dispatch(fetchUser())
+        }
+        return;
+    }
 
 
     useEffect(() => {
-        dispatch(fetchUser())
+        getUser();
     }, [token])
 
 
@@ -29,7 +37,19 @@ const Homepage = () => {
 
                 <Navbar {...user} />
 
+
             )}
+            <div className=' grid h-screen place-content-center '>
+                {user?.role == "admin" ? (
+                    <div>
+                        <p>Hello Admin</p>
+                    </div>
+                ) : (
+                    <div>
+                        <p>Hello User</p>
+                    </div>
+                )}
+            </div>
 
         </>
     )
