@@ -33,7 +33,7 @@ const Login = () => {
             const token = localStorage.getItem("token")
 
             if (token) {
-                navigate("/")
+                navigate(-1)
             }
 
             setLoading(false)

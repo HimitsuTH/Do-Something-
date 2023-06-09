@@ -6,23 +6,30 @@ import { useAppSeletor, useAppDispatch } from '../redux/app/hook'
 import { fetchUser } from "../redux/features/user/userSlice"
 import Navbar from '../components/Navbar';
 
+import { useNavigate } from 'react-router-dom';
 
 const Homepage = () => {
-    let data = useAppSeletor(state => state.user);
 
     const tokenStr = localStorage.getItem("token");
-  
+    let data = null
     let token: any = null;
-    if (tokenStr) token = JSON.parse(tokenStr);
+    if (tokenStr) {
+        data = useAppSeletor(state => state.user);
+        token = JSON.parse(tokenStr)
+    };
 
+    console.log("-------------")
+    console.log(data)
+    console.log("-------------")
     // console.log(token)
 
-    const user = data.userData
+    let user = data?.userData
 
 
     //   console.log(token)
 
-    // console.log(user.role)
+
+    // console.log("----------------------")
     // const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
@@ -31,7 +38,9 @@ const Homepage = () => {
         if (tokenStr) {
             return dispatch(fetchUser())
         }
+
         return;
+
     }
 
 
@@ -48,30 +57,41 @@ const Homepage = () => {
 
 
 
+    const navigate = useNavigate();
+    const handleOnLogout = () => {
+
+        // console.log(user)
+        localStorage.removeItem("token")
+        localStorage.removeItem("userData")
+        navigate("/login")
+    }
+
 
     if (expiryTime < now || token == null) {
         localStorage.removeItem("token");
         localStorage.removeItem("user")
     }
-
+    // console.log(user)
 
     return (
         <>
 
-            {data.loading ? (<p className='grid h-screen place-items-center'>loading...</p>) : (
+            {data?.loading ? (<p className='grid h-screen place-items-center'>loading...</p>) : (
 
-                <Navbar {...user} />
+                <Navbar handleOnLogout={handleOnLogout} user={user} />
 
 
             )}
             <div className=' grid h-screen place-content-center '>
                 {user?.role == "admin" ? (
-                    <div>
+                    <div className=' text-center '>
                         <p>Hello Admin</p>
+                        <p>{user?.name && "ADMIN"}</p>
                     </div>
                 ) : (
-                    <div>
+                    <div className=' text-center '>
                         <p>Hello User</p>
+                        <p>{user?.name ? user?.name : "USER"}</p>
                     </div>
                 )}
             </div>
