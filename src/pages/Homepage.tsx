@@ -9,16 +9,26 @@ import Navbar from '../components/Navbar';
 
 const Homepage = () => {
     let data = useAppSeletor(state => state.user);
-    let token: any = localStorage.getItem("token")
+
+    const tokenStr = localStorage.getItem("token");
+  
+    let token: any = null;
+    if (tokenStr) token = JSON.parse(tokenStr);
+
+    // console.log(token)
+
     const user = data.userData
 
+
+    //   console.log(token)
 
     // console.log(user.role)
     // const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
+
     const getUser = () => {
-        if (token) {
+        if (tokenStr) {
             return dispatch(fetchUser())
         }
         return;
@@ -27,7 +37,22 @@ const Homepage = () => {
 
     useEffect(() => {
         getUser();
-    }, [token])
+    }, [tokenStr])
+
+
+    const now = new Date().getTime();
+
+
+    const expires_in: number = parseInt(String(token?.expires_in));
+    const expiryTime = expires_in * 1000;
+
+
+
+
+    if (expiryTime < now || token == null) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user")
+    }
 
 
     return (
