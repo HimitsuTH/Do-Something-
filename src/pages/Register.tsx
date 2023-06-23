@@ -41,10 +41,10 @@ const Register = () => {
                     email: values?.email,
                     password: values?.password
                 })).then((res) => {
-                    const data = res.payload
+                    const payload = res.payload
 
-                    if (data.status_code == 400 || data.status_code == 404) {
-                        setErrorMsg(data.message);
+                    if (payload.status_code == 400 || payload.status_code == 404) {
+                        setErrorMsg(payload.message);
                     } else {
                         navigate("/login");
                     }
