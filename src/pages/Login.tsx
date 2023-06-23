@@ -33,7 +33,7 @@ const Login = () => {
             const token = localStorage.getItem("token")
 
             if (token) {
-                navigate(-1)
+                navigate("/")
             }
 
             setLoading(false)
@@ -54,7 +54,7 @@ const Login = () => {
             <nav  className='p-3 absolute top-0 w-full'>
                 <ul className=' flex justify-end items-center'>
                     <li>
-                        <button onClick={()=> navigate(-1)}>
+                        <button onClick={()=> navigate("/")}>
                             Back
                         </button>
                     </li>
@@ -62,6 +62,7 @@ const Login = () => {
             </nav>
             <div className=' grid h-screen place-items-center '>
                 <div >
+                <h1 className=' text-xl text-center font-bold select-none'>Sign in</h1>
                     <Formik
                         initialValues={initialValues}
                         onSubmit={(values) => {
@@ -78,7 +79,7 @@ const Login = () => {
                             <Field name="email" id="email" placeholder="Email" className=" input outline-none" />
                             <Field name="password" id="password" placeholder="password" type="password" className=" input outline-none" />
                             <p className=' text-red-500 my-2 text-center'>{data.error && data.error.message}</p>
-                            <button type="submit" className={`${loading && "loading"}`} disabled={loading}>{loading ? "loading..." : "sign up"}</button>
+                            <button type="submit" className={`${loading && "loading"} btn`} disabled={loading}>{loading ? "loading..." : "sign up"}</button>
                         </Form>
                     </Formik>
                     <div className=' flex gap-x-2 mt-4'>

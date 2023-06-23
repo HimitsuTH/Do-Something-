@@ -38,7 +38,6 @@ const Homepage = () => {
         if (tokenStr) {
             return dispatch(fetchUser())
         }
-
         return;
 
     }
