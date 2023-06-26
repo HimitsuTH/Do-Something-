@@ -43,10 +43,11 @@ const Register = () => {
                 })).then((res) => {
                     const payload = res.payload
 
-                    if (payload.status_code == 400 || payload.status_code == 404) {
-                        setErrorMsg(payload.message);
+                    if (payload.status_code == 400 || payload.status_code == 404 || payload.status_code == 422) {
+                        setErrorMsg("Something went wrong!!");
                     } else {
                         navigate("/login");
+                        setErrorMsg("");
                     }
                 });
 
