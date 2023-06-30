@@ -77,11 +77,13 @@ const Homepage = () => {
 
             {data?.loading ? (<p className='grid h-screen place-items-center'>loading...</p>) : (
 
-                <Navbar handleOnLogout={handleOnLogout} user={user} />
+                <header>
+                    <Navbar handleOnLogout={handleOnLogout} user={user} />
+                </header>
 
 
             )}
-            <div className=' grid h-screen place-content-center '>
+            <main className=' grid h-screen place-content-center '>
                 {user?.role == "admin" ? (
                     <div className=' text-center '>
                         <p>Hello Admin</p>
@@ -93,7 +95,7 @@ const Homepage = () => {
                         <p>{user?.name ? user?.name : "USER"}</p>
                     </div>
                 )}
-            </div>
+            </main>
 
         </>
     )
