@@ -1,5 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAppSeletor, useAppDispatch } from '../redux/app/hook'
+import CountUp from 'react-countup';
+import VisibilitySensor from 'react-visibility-sensor';
 // import { useNavigate } from 'react-router-dom';
 
 
@@ -10,6 +12,9 @@ import { useNavigate } from 'react-router-dom';
 
 const Homepage = () => {
 
+
+    const [count, setCount] = useState<number>(0);
+
     const tokenStr = localStorage.getItem("token");
     let data = null
     let token: any = null;
@@ -18,15 +23,14 @@ const Homepage = () => {
         token = JSON.parse(tokenStr)
     };
 
-    console.log("-------------")
-    console.log(data)
-    console.log("-------------")
+
+    //check token && data
+    // console.log("-------------")
+    // console.log(data)
+    // console.log("-------------")
     // console.log(token)
 
     let user = data?.userData
-
-
-    //   console.log(token)
 
 
     // console.log("----------------------")
@@ -91,8 +95,17 @@ const Homepage = () => {
                     </div>
                 ) : (
                     <div className=' text-center '>
-                        <p>Hello User</p>
-                        <p>{user?.name ? user?.name : "USER"}</p>
+                        <div className='wrap'>
+                            <p>{!user && "Hello User"}</p>
+                            <p>{user?.name ? user?.name : "USER"}</p>
+                            <div className='mt-5'>
+                                <p className=' text-lg mb-5'> {count} </p>
+
+                                <button onClick={() => setCount(count + 1)}>
+                                    Click Me !!
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 )}
             </main>
