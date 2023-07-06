@@ -51,18 +51,21 @@ const Login = () => {
 
     return (
         <div>
-            <nav  className='p-3 absolute top-0 w-full'>
-                <ul className=' flex justify-end items-center'>
-                    <li>
-                        <button onClick={()=> navigate("/")}>
-                            Back
-                        </button>
-                    </li>
-                </ul>
-            </nav>
+
+            <header className=' fixed z-20 w-full top-0 left-0 flex lg:flex flex-shrink-0 flex-col'>
+                <nav className='p-3'>
+                    <ul className=' flex justify-end items-center'>
+                        <li>
+                            <button onClick={() => navigate("/")}>
+                                Back
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
             <div className=' grid h-screen place-items-center '>
                 <div >
-                <h1 className=' text-xl text-center font-bold select-none'>Sign in</h1>
+                    <h1 className=' text-xl text-center font-bold select-none'>Sign in</h1>
                     <Formik
                         initialValues={initialValues}
                         onSubmit={(values) => {
