@@ -17,3 +17,11 @@
 .btn {
   margin: 0.5em 0;
 }
+
+
+.d-menu-list {
+
+  padding: 10px;
+  margin-top: 2rem;
+  border-radius: 0.25rem;
+}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAppSeletor, useAppDispatch } from '../redux/app/hook'
-import CountUp from 'react-countup';
-import VisibilitySensor from 'react-visibility-sensor';
+import { index as Dashboard } from '../components/dashboard/index'
+
 // import { useNavigate } from 'react-router-dom';
 
 
@@ -77,22 +77,19 @@ const Homepage = () => {
     // console.log(user)
 
     return (
-        <>
+        <div className='h-screen  max-sm:container'>
 
             {data?.loading ? (<p className='grid h-screen place-items-center'>loading...</p>) : (
 
-                <header>
+                <header className=' container'>
                     <Navbar handleOnLogout={handleOnLogout} user={user} />
                 </header>
 
 
             )}
-            <main className=' grid h-screen place-content-center '>
+            <main className=' flex overflow-hidden bg-white pt-16'>
                 {user?.role == "admin" ? (
-                    <div className=' text-center '>
-                        <p>Hello Admin</p>
-                        <p>{user?.name && "ADMIN"}</p>
-                    </div>
+                    <Dashboard />
                 ) : (
                     <div className=' text-center '>
                         <div className='wrap'>
@@ -110,7 +107,7 @@ const Homepage = () => {
                 )}
             </main>
 
-        </>
+        </div>
     )
 }
 
