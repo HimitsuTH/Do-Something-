@@ -37,7 +37,7 @@ const userSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(fetchUser.fulfilled, (state, action) => {
-      const userData: User = action.payload.user;
+      const userData: User | undefined = action.payload.user;
       state.loading = false;
       state.userData = userData;
       localStorage.setItem("userData", JSON.stringify(userData));
